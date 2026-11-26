@@ -49,6 +49,7 @@ def pengeluaran():
 
 # Program Utama
 def program_utama():
+    daftar_transaksi = []
     while True:
         dashboard()
         pilihan_menu = int(input("Pilih Menu: "))
@@ -57,24 +58,31 @@ def program_utama():
                 catat = catat_transaksi()
                 if catat == 1:
                     transaksi = pemasukan()
-                    deskripsi, nominal, kategori, tipe = transaksi.values()
-                    print("Total pemasukan = ", nominal)
-                    print("Kategori pemasukan = ", kategori)
-                    print("Deskripsi: ", deskripsi)
-                    print("Tipe: ", tipe)
+                    print("Total pemasukan = ", transaksi["nominal"])
+                    print("Kategori pemasukan = ", transaksi["kategori"])
+                    print("Deskripsi: ", transaksi["deskripsi"])
+                    print("Tipe: ", transaksi["tipe"])
                     break
                 elif catat == 2:
                     transaksi = pengeluaran()
-                    deskripsi, nominal, kategori, tipe = transaksi.values()
-                    print("Total pengeluaran = ", nominal)
-                    print("Kategori pengeluaran = ", kategori)
-                    print("Deskripsi: ", deskripsi)
-                    print("Tipe: ", tipe)
+                    print("Total pengeluaran = ", transaksi["nominal"])
+                    print("Kategori pengeluaran = ", transaksi["kategori"])
+                    print("Deskripsi: ", transaksi["deskripsi"])
+                    print("Tipe: ", transaksi["tipe"])
                     break
                 else:
                     print("Pilihan tidak valid")
+            daftar_transaksi.append(transaksi)
         elif pilihan_menu == 2:
-            pass
+            if not daftar_transaksi:
+                print("Tidak ada transaksi yang dapat ditampilkan")
+            else:
+                print("---- DAFTAR TRANSAKSI -----")
+                for daftar in daftar_transaksi:
+                    for keys, value in daftar.items():
+                        print(f"{keys}: {value}")
+                    print("-------------------------------")
+
         elif pilihan_menu == 3:
             pass
         elif pilihan_menu == 4:
