@@ -49,6 +49,8 @@ def pengeluaran():
 
 # Program Utama
 def program_utama():
+    uang_masuk = []
+    uang_keluar = []
     daftar_transaksi = []
     while True:
         dashboard()
@@ -58,6 +60,7 @@ def program_utama():
                 catat = catat_transaksi()
                 if catat == 1:
                     transaksi = pemasukan()
+                    uang_masuk.append(transaksi["nominal"])
                     print("Total pemasukan = ", transaksi["nominal"])
                     print("Kategori pemasukan = ", transaksi["kategori"])
                     print("Deskripsi: ", transaksi["deskripsi"])
@@ -65,6 +68,7 @@ def program_utama():
                     break
                 elif catat == 2:
                     transaksi = pengeluaran()
+                    uang_keluar.append(transaksi["nominal"])
                     print("Total pengeluaran = ", transaksi["nominal"])
                     print("Kategori pengeluaran = ", transaksi["kategori"])
                     print("Deskripsi: ", transaksi["deskripsi"])
@@ -82,11 +86,13 @@ def program_utama():
                     for keys, value in daftar.items():
                         print(f"{keys}: {value}")
                     print("-------------------------------")
-
         elif pilihan_menu == 3:
             pass
         elif pilihan_menu == 4:
-            pass
+            total_uang_masuk = sum(uang_masuk)
+            total_uang_keluar = sum(uang_keluar)
+            saldo = total_uang_masuk - total_uang_keluar
+            print(f"saldo anda saat ini sebesar: {saldo}")
         elif pilihan_menu == 5:
             break
         else:
