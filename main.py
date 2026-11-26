@@ -81,11 +81,12 @@ def program_utama():
             if not daftar_transaksi:
                 print("Tidak ada transaksi yang dapat ditampilkan")
             else:
+                angka = 1
                 print("---- DAFTAR TRANSAKSI -----")
                 for daftar in daftar_transaksi:
-                    for keys, value in daftar.items():
-                        print(f"{keys}: {value}")
-                    print("-------------------------------")
+                    print(f"{angka}. {daftar['deskripsi']} | {daftar['nominal']} | {daftar['kategori']} | {daftar['tipe']}")
+                    angka += 1
+                print("----------------------------------")
         elif pilihan_menu == 3:
             pass
         elif pilihan_menu == 4:
